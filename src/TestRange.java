@@ -58,7 +58,7 @@ public class TestRange extends TestCase {
 	
 	public void test99() {
 		Collection<Integer> r = new RangeCollection(-2000_000_000,2000_000_000);
-		assertTrue(r.contains(999999999));
-		assertFalse(r.contains(2000000000));
+		assertTrue(r.contains(999_999_999));
+		assertFalse(r.contains(2_000_000_000));
 	}
 }
