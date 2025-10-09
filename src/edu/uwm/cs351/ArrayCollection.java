@@ -1,6 +1,7 @@
 package edu.uwm.cs351;
 
 import java.util.AbstractCollection;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -9,6 +10,7 @@ public class ArrayCollection<E> extends AbstractCollection<E> {
 	
 	private E[] data;
 	private int size;
+	private int version;
 	
 	private void ensureCapacity(int needed) {
 		if (needed <= data.length) return;
@@ -37,6 +39,7 @@ public class ArrayCollection<E> extends AbstractCollection<E> {
 		ensureCapacity(size+1);
 		data[size] = e;
 		++size;
+		++version;
 		return true;
 	}
 
@@ -57,10 +60,15 @@ public class ArrayCollection<E> extends AbstractCollection<E> {
 	
 	private class MyIterator implements Iterator<E> {
 		int index = -1;
+		int colVersion = version;
 		
+		private void checkVersion() {
+			if (colVersion != version) throw new ConcurrentModificationException("stale");
+		}
 		@Override
 		public boolean hasNext() {
-			return index < size; // XXX: JTB is dubious
+			checkVersion();
+			return index+1 < size; // XXX: JTB is dubious
 		}
 
 		@Override
