@@ -2,6 +2,7 @@ package edu.uwm.cs351;
 
 import java.util.AbstractCollection;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class ArrayCollection<E> extends AbstractCollection<E> {
 	private static final int INITIAL_CAPACITY = 1;
@@ -41,8 +42,7 @@ public class ArrayCollection<E> extends AbstractCollection<E> {
 
 	@Override // required
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new MyIterator();
 	}
 
 	@Override // required
@@ -53,5 +53,22 @@ public class ArrayCollection<E> extends AbstractCollection<E> {
 	@Override
 	public E[] toArray() {
 		return data; // XXX very bad idea
+	}
+	
+	private class MyIterator implements Iterator<E> {
+		int index = -1;
+		
+		@Override
+		public boolean hasNext() {
+			return index < size; // XXX: JTB is dubious
+		}
+
+		@Override
+		public E next() {
+			if (!hasNext()) throw new NoSuchElementException("no more");
+			++index;
+			return data[index];
+		}
+		
 	}
 }
