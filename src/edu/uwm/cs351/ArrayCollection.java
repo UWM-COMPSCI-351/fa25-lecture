@@ -29,6 +29,16 @@ public class ArrayCollection<E> extends AbstractCollection<E> {
 		data = makeArray(INITIAL_CAPACITY);
 	}
 	
+	
+	@Override
+	public boolean add(E e) {
+		// TODO Auto-generated method stub
+		ensureCapacity(size+1);
+		data[size] = e;
+		++size;
+		return true;
+	}
+
 	@Override // required
 	public Iterator<E> iterator() {
 		// TODO Auto-generated method stub
