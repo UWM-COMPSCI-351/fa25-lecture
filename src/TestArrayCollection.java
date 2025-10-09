@@ -10,6 +10,7 @@ public class TestArrayCollection extends AbstractTestCollection<String> {
 	public void test90() {
 		ArrayCollection<Integer> ac = new ArrayCollection<>();
 		ac.add(Integer.valueOf(42));
+		
 		Integer[] result = ac.toArray();
 		System.out.println("a[0] = " + result[0]);
 	}
