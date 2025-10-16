@@ -18,7 +18,7 @@ public class Queue<E> {
 	}
 	
 	public boolean isEmpty() {
-		return used == 0;
+		return used == front;
 	}
 
 	public int size() {
