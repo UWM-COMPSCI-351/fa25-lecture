@@ -1,5 +1,7 @@
 package edu.uwm.cs351;
 
+import java.util.NoSuchElementException;
+
 public class Queue<E> {
 	private E[] data;
 	private int used;
@@ -42,16 +44,20 @@ public class Queue<E> {
 	/**
 	 * Return the element at the front of the queue.
 	 * @return element at front, without removing it.
+	 * @exception NoSuchElementException if queue is empty
 	 */
 	public E front() {
+		if (isEmpty()) throw new NoSuchElementException("empty Q");
 		return data[0];
 	}
 
 	/**
 	 * Remove and return the element at the front of the queye
 	 * @return former front element
+	 * @exception NoSuchElementException if queue is empty
 	 */
 	public E dequeue() {
+		if (isEmpty()) throw new NoSuchElementException("empty Q");
 		E result = data[0];
 		--used;
 		for (int i=0; i < used; ++i) {
