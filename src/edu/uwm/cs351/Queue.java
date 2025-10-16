@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 public class Queue<E> {
 	private E[] data;
 	private int used;
+	private int front;
 	
 	@SuppressWarnings("unchecked")
 	private E[] makeArray(int cap) {
@@ -49,7 +50,7 @@ public class Queue<E> {
 	 */
 	public E front() {
 		if (isEmpty()) throw new NoSuchElementException("empty Q");
-		return data[0];
+		return data[front];
 	}
 
 	/**
@@ -59,11 +60,8 @@ public class Queue<E> {
 	 */
 	public E dequeue() {
 		if (isEmpty()) throw new NoSuchElementException("empty Q");
-		E result = data[0];
-		--used;
-		for (int i=0; i < used; ++i) {
-			data[i] = data[i+1];
-		}
+		E result = data[front];
+		++front;
 		return result;
 	}
 
