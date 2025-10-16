@@ -36,6 +36,7 @@ public class Queue<E> {
 	}
 
 	public void enqueue(E elem) {
+		if (elem == null) throw new IllegalArgumentException("cannot add null to Q");
 		ensureCapacity(used+1);
 		data[used] = elem;
 		++used;

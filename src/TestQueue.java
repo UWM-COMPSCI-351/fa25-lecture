@@ -116,9 +116,10 @@ public class TestQueue extends TestCase {
         }
         
         public void test10() {
-                for (int power = 0; power < 14; power++) {
+                for (int power = 0; power < 20; power++) {
                         queue = new Queue<>();
                         int i;
+                        System.out.println("Power " + power);
                         for (i = 0; i < 1 << power; i++)
                                 queue.enqueue(i);
                         testQueue(queue, IntStream.rangeClosed(0,i-1).toArray());
