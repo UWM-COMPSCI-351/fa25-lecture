@@ -22,7 +22,7 @@ public class Queue<E> {
 	}
 
 	public int size() {
-		return used;
+		return used - front;
 	}
 
 	private void ensureCapacity(int needed) {
