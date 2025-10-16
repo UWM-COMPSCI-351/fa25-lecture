@@ -44,8 +44,7 @@ public class Queue<E> {
 	 * @return element at front, without removing it.
 	 */
 	public E front() {
-		// TODO Auto-generated method stub
-		return null;
+		return data[0];
 	}
 
 	/**
@@ -53,8 +52,12 @@ public class Queue<E> {
 	 * @return former front element
 	 */
 	public E dequeue() {
-		// TODO Auto-generated method stub
-		return null;
+		E result = data[0];
+		--used;
+		for (int i=0; i < used; ++i) {
+			data[i] = data[i+1];
+		}
+		return result;
 	}
 
 }
