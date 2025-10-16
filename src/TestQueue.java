@@ -188,4 +188,16 @@ public class TestQueue extends TestCase {
                         assertTrue("wrong exception... " + ex, ex instanceof NoSuchElementException);
                 }
         }
+        
+        public void test20() {
+        	int power = 30;
+        	queue.enqueue(0);
+        	for (int p = 0; p < power; ++p) {
+        		for (int i=1<<p; i < 1<<(p+1); ++i) {
+        			queue.enqueue(i);
+        			assertEquals(Integer.valueOf(i-1), queue.dequeue());
+        			assertEquals(1, queue.size());
+        		}
+        	}
+        }
 }
