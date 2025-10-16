@@ -1,20 +1,42 @@
 package edu.uwm.cs351;
 
 public class Queue<E> {
-
+	private E[] data;
+	private int used;
+	
+	@SuppressWarnings("unchecked")
+	private E[] makeArray(int cap) {
+		return (E[])new Object[cap];
+	}
+	
+	public Queue() {
+		data = makeArray(1);
+		used = 0;
+	}
+	
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return used == 0;
 	}
 
 	public int size() {
-		// TODO Auto-generated method stub
-		return -1;
+		return used;
+	}
+
+	private void ensureCapacity(int needed) {
+		if (needed <= data.length) return;
+		int newCap = needed;
+		if (newCap < data.length*2) newCap = data.length*2;
+		E[] newData = makeArray(newCap);
+		for (int i=0; i < used; ++i) {
+			newData[i] = data[i];
+		}
+		data = newData;
 	}
 
 	public void enqueue(E elem) {
-		// TODO Auto-generated method stub
-		
+		ensureCapacity(used+1);
+		data[used] = elem;
+		++used;
 	}
 
 	/**
