@@ -74,4 +74,16 @@ public class TestQuicksortEfficiency extends TestCase {
 		q.sort(coll);
 	}
 
+	public void test10() {
+		addRandom(1<<20);
+		q.sort(coll);
+	}
+	
+	public void test99() {
+		for (int i=0; i < 10000; ++i) {
+			coll.add(i);
+		}
+		q.sort(coll);
+	}
+
 }
