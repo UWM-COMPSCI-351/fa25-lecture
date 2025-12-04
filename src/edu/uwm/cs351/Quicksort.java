@@ -15,6 +15,7 @@ public class Quicksort<T> {
 		Collection<T> bigger = new ArrayList<>();
 		Collection<T> smaller = new ArrayList<>();
 		Iterator<T> it = input.iterator();
+		if (!it.hasNext()) return input;
 		T pivot = it.next();
 		while (it.hasNext()) {
 			T elem = it.next();
